@@ -3,6 +3,6 @@
  */
 public interface test1 {
     public static void main(String args){
-        System.out.print("qqqq");
+        System.out.print("tttt");
     }
 }
