@@ -1,0 +1,16 @@
+static String toEncrypt(String myKey, String value) throws Exception {
+        BASE64Encoder encoder = new BASE64Encoder();
+        String pwd64 = encoder.encode(myKey.getBytes());
+        SecretKeySpec key = new SecretKeySpec(pwd64.getBytes(), "AES");
+        byte[] encoderStr = AESUtil.encryptAES(value.getBytes(), key);
+        return encoder.encode(encoderStr);
+    }
+
+    static String toDecrypt(String myKey, String encryptValue) throws Exception {
+        BASE64Encoder encoder = new BASE64Encoder();
+        BASE64Decoder decoder = new BASE64Decoder();
+        String pwd64 = encoder.encode(myKey.getBytes());
+        SecretKeySpec key = new SecretKeySpec(pwd64.getBytes(), "AES");
+        byte[] decoderStr = AESUtil.decryptAES(decoder.decodeBuffer(encryptValue), key);
+        return new String(decoderStr);
+    }
